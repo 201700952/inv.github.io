@@ -1,16 +1,146 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirmación de Asistencia - Graduación</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .badge {
+      background: #facc15;
+      color: #111827;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      color: #d1d5db;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .event-box {
+      background: rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .event-box p {
+      margin-bottom: 10px;
+      color: #f3f4f6;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d1d5db;
+    }
+
+    select option {
+      color: black;
+    }
+
+    button {
+      background: #facc15;
+      color: #111827;
+      border: none;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: #fde047;
+    }
+
+    .success {
+      margin-top: 20px;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.4);
+      padding: 16px;
+      border-radius: 14px;
+      display: none;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width: 640px) {
+      .container {
+        padding: 28px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -26,8 +156,8 @@
 
     <div class="event-box">
       <p><strong>📅 Fecha:</strong> 28 de Junio 2026</p>
-      <p><strong>📍 Lugar:</strong> Trefratelli</p>
-      <p><strong>🕗 Hora:</strong> 6:30:00 PM</p>
+      <p><strong>📍 Lugar:</strong> Trefratelli </p>
+      <p><strong>🕗 Hora:</strong> 6:30 PM</p>
       <p><strong>👔 Código de vestimenta:</strong> Elegante</p>
     </div>
 
@@ -71,6 +201,9 @@
       };
 
       console.log('Datos enviados:', data);
+
+      // Aquí puedes conectar Google Sheets, Firebase o EmailJS
+      // para guardar las respuestas automáticamente.
 
       successMessage.style.display = 'block';
       form.reset();
