@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirmación de Asistencia - Graduación</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -124,6 +125,11 @@
       display: none;
     }
 
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
     .footer {
       margin-top: 30px;
       text-align: center;
@@ -155,9 +161,9 @@
     </p>
 
     <div class="event-box">
-      <p><strong>📅 Fecha:</strong> 28 de Junio 2026</p>
-      <p><strong>📍 Lugar:</strong> Trefratelli </p>
-      <p><strong>🕗 Hora:</strong> 6:30 PM</p>
+      <p><strong>📅 Fecha:</strong> 15 de Agosto 2026</p>
+      <p><strong>📍 Lugar:</strong> Salón Las Flores</p>
+      <p><strong>🕗 Hora:</strong> 8:00 PM</p>
       <p><strong>👔 Código de vestimenta:</strong> Elegante</p>
     </div>
 
@@ -174,7 +180,7 @@
 
       <textarea id="message" rows="4" placeholder="Mensaje opcional"></textarea>
 
-      <button type="submit">Confirmar asistencia</button>
+      <button type="submit" id="submitBtn">Confirmar asistencia</button>
     </form>
 
     <div class="success" id="successMessage">
@@ -189,9 +195,16 @@
   <script>
     const form = document.getElementById('rsvpForm');
     const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // 🔗 PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyJYNLbtBjayvN2XGIZVkPzOR0wZdNCTXIG3QbMXZN3oAB0pfB9H9BVGDzXiFDwZCbcPQ/exec';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      submitBtn.innerText = 'Enviando...';
+      submitBtn.classList.add('loading');
 
       const data = {
         nombre: document.getElementById('name').value,
@@ -200,19 +213,85 @@
         mensaje: document.getElementById('message').value,
       };
 
-      console.log('Datos enviados:', data);
+      try {
+        await fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
 
-      // Aquí puedes conectar Google Sheets, Firebase o EmailJS
-      // para guardar las respuestas automáticamente.
+        successMessage.style.display = 'block';
+        form.reset();
 
-      successMessage.style.display = 'block';
-      form.reset();
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 5000);
 
-      setTimeout(() => {
-        successMessage.style.display = 'none';
-      }, 5000);
+      } catch (error) {
+        alert('Ocurrió un error al enviar la confirmación');
+        console.error(error);
+      }
+
+      submitBtn.innerText = 'Confirmar asistencia';
+      submitBtn.classList.remove('loading');
     });
   </script>
 
 </body>
 </html>
+
+<!-- ============================== -->
+<!-- GOOGLE APPS SCRIPT -->
+<!-- ============================== -->
+
+<!--
+1. Crea un Google Sheets.
+
+2. Ve a:
+https://script.google.com
+
+3. Crea un nuevo proyecto.
+
+4. Pega este código:
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById('TU_SHEET_ID').getSheetByName('Hoja1');
+
+  const data = JSON.parse(e.postData.contents);
+
+  sheet.appendRow([
+    new Date(),
+    data.nombre,
+    data.invitados,
+    data.asistencia,
+    data.mensaje
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ result: 'success' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+5. Reemplaza TU_SHEET_ID.
+
+6. Deploy > New deployment.
+
+7. Tipo: Web App.
+
+8. Acceso:
+Anyone
+
+9. Copia la URL generada.
+
+10. Pega la URL en:
+const scriptURL = 'PEGA_AQUI_TU_URL';
+
+-->
+
+  h1 {
+    font-size: 2rem;
+  }
+}
