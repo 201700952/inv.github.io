@@ -1,0 +1,85 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmación de Asistencia - Graduación</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="badge">🎓 Fiesta de Graduación</div>
+
+    <h1>¡Estás Invitado!</h1>
+
+    <p class="subtitle">
+      Me haría mucha ilusión contar contigo en esta noche tan especial.
+      Por favor confirma tu asistencia llenando este formulario.
+    </p>
+
+    <div class="event-box">
+      <p><strong>📅 Fecha:</strong> 15 de Agosto 2026</p>
+      <p><strong>📍 Lugar:</strong> Salón Las Flores</p>
+      <p><strong>🕗 Hora:</strong> 8:00 PM</p>
+      <p><strong>👔 Código de vestimenta:</strong> Elegante</p>
+    </div>
+
+    <form id="rsvpForm">
+      <input type="text" id="name" placeholder="Nombre completo" required />
+
+      <input type="number" id="guests" placeholder="¿Cuántas personas asistirán?" min="1" required />
+
+      <select id="attendance" required>
+        <option value="">¿Asistirás?</option>
+        <option value="Sí asistiré">Sí asistiré</option>
+        <option value="No podré asistir">No podré asistir</option>
+      </select>
+
+      <textarea id="message" rows="4" placeholder="Mensaje opcional"></textarea>
+
+      <button type="submit">Confirmar asistencia</button>
+    </form>
+
+    <div class="success" id="successMessage">
+      ✅ ¡Gracias! Tu confirmación fue enviada correctamente.
+    </div>
+
+    <div class="footer">
+      Hecho con ❤️ para celebrar este gran logro.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('rsvpForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        nombre: document.getElementById('name').value,
+        invitados: document.getElementById('guests').value,
+        asistencia: document.getElementById('attendance').value,
+        mensaje: document.getElementById('message').value,
+      };
+
+      console.log('Datos enviados:', data);
+
+      successMessage.style.display = 'block';
+      form.reset();
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
