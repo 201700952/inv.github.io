@@ -161,9 +161,9 @@
     </p>
 
     <div class="event-box">
-      <p><strong>📅 Fecha:</strong> 15 de Agosto 2026</p>
-      <p><strong>📍 Lugar:</strong> Salón Las Flores</p>
-      <p><strong>🕗 Hora:</strong> 8:00 PM</p>
+      <p><strong>📅 Fecha:</strong> 28 de junio de 2026</p>
+      <p><strong>📍 Lugar:</strong> Trefratelli - Salón Murano </p>
+      <p><strong>🕗 Hora:</strong> 6:30:00 PM</p>
       <p><strong>👔 Código de vestimenta:</strong> Elegante</p>
     </div>
 
@@ -192,13 +192,26 @@
     </div>
   </div>
 
+  <!-- EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+    emailjs.init({
+      publicKey: PUBLIC_KEY,
+    });
+
     const form = document.getElementById('rsvpForm');
     const successMessage = document.getElementById('successMessage');
     const submitBtn = document.getElementById('submitBtn');
 
-    // 🔗 PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx-PZmmA_PS7OkzlKoHTQEKRmbA-ok04MmV7NUR9rg7BxKzkxEYcYsOehK6YUNd0ks5_w/exec';
+    // =============================
+    // CONFIGURACIÓN EMAILJS
+    // =============================
+
+    // 🔗 REEMPLAZA ESTOS DATOS CON LOS TUYOS
+    const SERVICE_ID = 'TU_SERVICE_ID';
+    const TEMPLATE_ID = 'TU_TEMPLATE_ID';
+    const PUBLIC_KEY = 'TU_PUBLIC_KEY';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -214,13 +227,11 @@
       };
 
       try {
-        await fetch(scriptURL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+          nombre: data.nombre,
+          invitados: data.invitados,
+          asistencia: data.asistencia,
+          mensaje: data.mensaje,
         });
 
         successMessage.style.display = 'block';
@@ -244,7 +255,46 @@
 </html>
 
 <!-- ============================== -->
-<!-- GOOGLE APPS SCRIPT -->
+<!-- CONFIGURACIÓN EMAILJS -->
+<!-- ============================== -->
+
+<!--
+1. Crea una cuenta en:
+https://www.emailjs.com/
+
+2. Ve a:
+Email Services
+
+3. Conecta tu Gmail.
+
+4. Crea un Email Template.
+
+5. En el template agrega:
+
+Nueva confirmación de graduación 🎓
+
+Nombre: {{nombre}}
+Invitados: {{invitados}}
+Asistencia: {{asistencia}}
+Mensaje: {{mensaje}}
+
+6. Copia:
+- SERVICE ID
+- TEMPLATE ID
+- PUBLIC KEY
+
+7. Reemplaza en el código:
+
+const SERVICE_ID = 'TU_SERVICE_ID';
+const TEMPLATE_ID = 'TU_TEMPLATE_ID';
+const PUBLIC_KEY = 'TU_PUBLIC_KEY';
+
+8. Sube el archivo a GitHub Pages.
+
+9. Cada vez que alguien confirme asistencia,
+recibirás un correo automáticamente.
+
+-->
 <!-- ============================== -->
 
 <!--
