@@ -3,345 +3,311 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmación de Asistencia - Graduación</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Invitación Graduación</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    body {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+    body{
+      min-height:100vh;
+      background: linear-gradient(135deg,#fff7d6,#ffffff,#fff1c2);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:30px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 600px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    .container{
+      width:100%;
+      max-width:1100px;
+      background:white;
+      border-radius:35px;
+      overflow:hidden;
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
     }
 
-    .badge {
-      background: #facc15;
-      color: #111827;
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-weight: 600;
-      margin-bottom: 20px;
+    .header{
+      background: linear-gradient(to right,#d4a017,#f3c623,#ffd95a);
+      color:white;
+      padding:60px 40px;
+      text-align:center;
+      position:relative;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      line-height: 1.1;
+    .header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') center/cover;
+      opacity:0.15;
     }
 
-    .subtitle {
-      color: #d1d5db;
-      margin-bottom: 30px;
-      line-height: 1.6;
+    .header-content{
+      position:relative;
+      z-index:2;
     }
 
-    .event-box {
-      background: rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 30px;
+    .header h1{
+      font-size:3rem;
+      margin-bottom:20px;
     }
 
-    .event-box p {
-      margin-bottom: 10px;
-      color: #f3f4f6;
+    .header p{
+      font-size:1.2rem;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    .content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      padding:50px;
+    }
+
+    .info h2,
+    .form-section h2{
+      color:#c49000;
+      margin-bottom:25px;
+      font-size:2rem;
+    }
+
+    .info-box{
+      background:#fff9e7;
+      padding:25px;
+      border-radius:25px;
+      margin-top:30px;
+      border:1px solid #ffe08a;
+    }
+
+    .info p{
+      margin-bottom:18px;
+      font-size:1.1rem;
+      color:#555;
+    }
+
+    .form-section{
+      background:white;
+      border-radius:25px;
+      padding:35px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+      border:1px solid #f2f2f2;
+    }
+
+    .form-group{
+      margin-bottom:22px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:10px;
+      color:#444;
+      font-weight:600;
     }
 
     input,
     select,
-    textarea {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      font-size: 1rem;
+    textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius:15px;
+      border:1px solid #ccc;
+      font-size:1rem;
+      outline:none;
+      transition:0.3s;
     }
 
-    input::placeholder,
-    textarea::placeholder {
-      color: #d1d5db;
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:#f3c623;
+      box-shadow:0 0 0 4px rgba(243,198,35,0.2);
     }
 
-    select option {
-      color: black;
+    textarea{
+      resize:none;
     }
 
-    button {
-      background: #facc15;
-      color: #111827;
-      border: none;
-      padding: 16px;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
+    button{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(to right,#d4a017,#f3c623);
+      color:white;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
     }
 
-    button:hover {
-      transform: translateY(-2px);
-      background: #fde047;
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
     }
 
-    .success {
-      margin-top: 20px;
-      background: rgba(34,197,94,0.15);
-      border: 1px solid rgba(34,197,94,0.4);
-      padding: 16px;
-      border-radius: 14px;
-      display: none;
+    #mensaje{
+      margin-top:15px;
+      text-align:center;
+      font-weight:600;
     }
 
-    .loading {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .footer {
-      margin-top: 30px;
-      text-align: center;
-      color: #9ca3af;
-      font-size: 0.9rem;
-    }
-
-    @media(max-width: 640px) {
-      .container {
-        padding: 28px;
+    @media(max-width:900px){
+      .content{
+        grid-template-columns:1fr;
       }
 
-      h1 {
-        font-size: 2rem;
+      .header h1{
+        font-size:2.2rem;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
-    <div class="badge">🎓 Fiesta de Graduación</div>
 
-    <h1>¡Estás Invitado!</h1>
+    <div class="header">
+      <div class="header-content">
+        <h1>🎓 Graduación 2026 🎓</h1>
 
-    <p class="subtitle">
-      Me haría mucha ilusión contar contigo en esta noche tan especial.
-      Por favor confirma tu asistencia llenando este formulario.
-    </p>
-
-    <div class="event-box">
-      <p><strong>📅 Fecha:</strong> 28 de junio de 2026</p>
-      <p><strong>📍 Lugar:</strong> Trefratelli - Salón Murano </p>
-      <p><strong>🕗 Hora:</strong> 6:30:00 PM</p>
-      <p><strong>👔 Código de vestimenta:</strong> Elegante</p>
+        <p>
+          Con mucha alegría queremos compartir contigo este momento tan especial.
+          Gracias por acompañarnos en este logro tan importante.
+        </p>
+      </div>
     </div>
 
-    <form id="rsvpForm">
-      <input type="text" id="name" placeholder="Nombre completo" required />
+    <div class="content">
 
-      <input type="number" id="guests" placeholder="¿Cuántas personas asistirán?" min="1" required />
+      <!-- Información -->
+      <div class="info">
 
-      <select id="attendance" required>
-        <option value="">¿Asistirás?</option>
-        <option value="Sí asistiré">Sí asistiré</option>
-        <option value="No podré asistir">No podré asistir</option>
-      </select>
+        <h2>Detalles del Evento</h2>
 
-      <textarea id="message" rows="4" placeholder="Mensaje opcional"></textarea>
+        <p><strong>📅 Fecha:</strong> 15 de Noviembre 2026</p>
+        <p><strong>⏰ Hora:</strong> 6:00 PM</p>
+        <p><strong>📍 Lugar:</strong> Hotel Celebration Hall</p>
+        <p><strong>👔 Vestimenta:</strong> Formal</p>
 
-      <button type="submit" id="submitBtn">Confirmar asistencia</button>
-    </form>
+        <div class="info-box">
+          <h3 style="margin-bottom:15px;color:#c49000;">
+            Mensaje Especial
+          </h3>
 
-    <div class="success" id="successMessage">
-      ✅ ¡Gracias! Tu confirmación fue enviada correctamente.
+          <p style="line-height:1.7;">
+            Tu presencia hará de este día un recuerdo inolvidable.
+            Esperamos compartir contigo esta gran celebración.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Formulario -->
+      <div class="form-section">
+
+        <h2>Confirmación</h2>
+
+        <form id="rsvpForm">
+
+          <div class="form-group">
+            <label>Nombre Completo</label>
+
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Ingresa tu nombre"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>¿Asistirás?</label>
+
+            <select name="confirmacion" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Sí asistiré">Sí asistiré</option>
+              <option value="No podré asistir">No podré asistir</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Comentario</label>
+
+            <textarea
+              name="comentario"
+              rows="5"
+              placeholder="Escribe un mensaje especial"
+            ></textarea>
+          </div>
+
+          <button type="submit">
+            Enviar Confirmación
+          </button>
+
+          <p id="mensaje"></p>
+
+        </form>
+
+      </div>
+
     </div>
 
-    <div class="footer">
-      Hecho con ❤️ para celebrar este gran logro.
-    </div>
   </div>
 
-  <!-- EMAILJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
   <script>
-    emailjs.init({
-      publicKey: PUBLIC_KEY,
+
+const form = document.getElementById("rsvpForm");
+const mensaje = document.getElementById("mensaje");
+
+// PEGA AQUÍ TU URL REAL DE APPS SCRIPT
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbwL5RAkBH_5Cb1UvMIMy7k5LROzWDN55tf2RuA4-PXkLkhTQ6M0j7_JebFaCYM4Sdz9vQ/exec";
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();https://script.google.com/macros/s/AKfycbwL5RAkBH_5Cb1UvMIMy7k5LROzWDN55tf2RuA4-PXkLkhTQ6M0j7_JebFaCYM4Sdz9vQ/exec
+
+  const formData = new FormData(form);
+
+  mensaje.innerHTML = "Enviando...";
+  mensaje.style.color = "#c49000";
+
+  try {
+
+    await fetch(scriptURL, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors"
     });
 
-    const form = document.getElementById('rsvpForm');
-    const successMessage = document.getElementById('successMessage');
-    const submitBtn = document.getElementById('submitBtn');
+    mensaje.innerHTML =
+      "✅ Confirmación enviada correctamente";
 
-    // =============================
-    // CONFIGURACIÓN EMAILJS
-    // =============================
+    mensaje.style.color = "green";
 
-    // 🔗 REEMPLAZA ESTOS DATOS CON LOS TUYOS
-    const SERVICE_ID = service_blqbque;
-    const TEMPLATE_ID = template_h2vdiqb;
-    const PUBLIC_KEY = 6bjP9sAeP3-8SiRLR;
+    form.reset();
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  } catch (error) {
 
-      submitBtn.innerText = 'Enviando...';
-      submitBtn.classList.add('loading');
+    console.error(error);
 
-      const data = {
-        nombre: document.getElementById('name').value,
-        invitados: document.getElementById('guests').value,
-        asistencia: document.getElementById('attendance').value,
-        mensaje: document.getElementById('message').value,
-      };
+    mensaje.innerHTML =
+      "❌ Ocurrió un error al enviar";
 
-      try {
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-          nombre: data.nombre,
-          invitados: data.invitados,
-          asistencia: data.asistencia,
-          mensaje: data.mensaje,
-        });
+    mensaje.style.color = "red";
+  }
 
-        successMessage.style.display = 'block';
-        form.reset();
+});
 
-        setTimeout(() => {
-          successMessage.style.display = 'none';
-        }, 5000);
-
-      } catch (error) {
-        alert('Ocurrió un error al enviar la confirmación');
-        console.error(error);
-      }
-
-      submitBtn.innerText = 'Confirmar asistencia';
-      submitBtn.classList.remove('loading');
-    });
-  </script>
+</script>
 
 </body>
 </html>
-
-<!-- ============================== -->
-<!-- CONFIGURACIÓN EMAILJS -->
-<!-- ============================== -->
-
-<!--
-1. Crea una cuenta en:
-https://www.emailjs.com/
-
-2. Ve a:
-Email Services
-
-3. Conecta tu Gmail.
-
-4. Crea un Email Template.
-
-5. En el template agrega:
-
-Nueva confirmación de graduación 🎓
-
-Nombre: {{nombre}}
-Invitados: {{invitados}}
-Asistencia: {{asistencia}}
-Mensaje: {{mensaje}}
-
-6. Copia:
-- SERVICE ID
-- TEMPLATE ID
-- PUBLIC KEY
-
-7. Reemplaza en el código:
-
-const SERVICE_ID = 'TU_SERVICE_ID';
-const TEMPLATE_ID = 'TU_TEMPLATE_ID';
-const PUBLIC_KEY = 'TU_PUBLIC_KEY';
-
-8. Sube el archivo a GitHub Pages.
-
-9. Cada vez que alguien confirme asistencia,
-recibirás un correo automáticamente.
-
--->
-<!-- ============================== -->
-
-<!--
-1. Crea un Google Sheets.
-
-2. Ve a:
-https://script.google.com
-
-3. Crea un nuevo proyecto.
-
-4. Pega este código:
-
-function doPost(e) {
-  const sheet = SpreadsheetApp.openById('TU_SHEET_ID').getSheetByName('Hoja1');
-
-  const data = JSON.parse(e.postData.contents);
-
-  sheet.appendRow([
-    new Date(),
-    data.nombre,
-    data.invitados,
-    data.asistencia,
-    data.mensaje
-  ]);
-
-  return ContentService
-    .createTextOutput(JSON.stringify({ result: 'success' }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-5. Reemplaza TU_SHEET_ID.
-
-6. Deploy > New deployment.
-
-7. Tipo: Web App.
-
-8. Acceso:
-Anyone
-
-9. Copia la URL generada.
-
-10. Pega la URL en:
-const scriptURL = 'PEGA_AQUI_TU_URL';
-
--->
-
-  h1 {
-    font-size: 2rem;
-  }
-}
